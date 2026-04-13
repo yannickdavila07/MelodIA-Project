@@ -4,17 +4,15 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import org.json.JSONObject; // Se não tiver essa lib, te passo a dependência abaixo!
+import org.json.JSONObject;
 
 
 public class ConsultaIA {
 
     public static String obterInformacao(String texto) {
-        // 1. Use a chave da Groq aqui
         String apiKey = System.getenv("GROQ_APIKEY");
         String url = "https://api.groq.com/openai/v1/chat/completions";
 
-        // 2. O JSON da Groq segue o padrão da OpenAI (mais simples que o do Gemini)
         String jsonDesejado = """
             {
               "model": "llama-3.3-70b-versatile",
@@ -31,7 +29,7 @@ public class ConsultaIA {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .header("Content-Type", "application/json")
-                .header("Authorization", "Bearer " + apiKey) // Groq exige o Bearer Token
+                .header("Authorization", "Bearer " + apiKey)
                 .POST(HttpRequest.BodyPublishers.ofString(jsonDesejado))
                 .build();
 
