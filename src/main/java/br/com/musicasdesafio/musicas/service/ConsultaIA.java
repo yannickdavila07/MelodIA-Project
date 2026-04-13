@@ -6,7 +6,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import org.json.JSONObject;
 
-
 public class ConsultaIA {
 
     public static String obterInformacao(String texto) {
